@@ -39,7 +39,7 @@ return array(
 		),
 
 		// uncomment the following to enable URLs in path-format
-
+		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -49,7 +49,7 @@ return array(
 			),
 		),
 
-
+		*/
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
 
@@ -66,11 +66,11 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-
+				/*
 				array(
 					'class'=>'CWebLogRoute',
 				),
-
+				*/
 			),
 		),
 

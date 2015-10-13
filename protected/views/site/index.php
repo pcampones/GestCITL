@@ -4,9 +4,9 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Centro Internacional de Ténis de Leiria</h1>
+<h1 align="center">Centro Internacional de Ténis de Leiria</h1>
 <div>
-	<img src="img/" alt="Imagem do CITL" id="imgCITL">
+	<img src="images/312374.jpg" alt="Imagem do CITL" width="910" height="700" id="imgCITL">
 </div>
 <!--
 <p>Congratulations! You have successfully created your Yii application.</p>

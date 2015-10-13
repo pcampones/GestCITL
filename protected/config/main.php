@@ -85,4 +85,15 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+	'components'=>array(
+		'Smtpmail'=>array(
+			'class'=>'application.extensions.smtpmail.PHPMailer',
+			'Host'=>"mail.yourdomain.com",
+			'Username'=>'test@yourdomain.com',
+			'Password'=>'test',
+			'Mailer'=>'smtp',
+			'Port'=>26,
+			'SMTPAuth'=>true,
+		),
+	),
 );

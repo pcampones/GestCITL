@@ -106,4 +106,33 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+    /**
+     *
+     */
+    public function actionContacto()
+    {
+        $model = new ContactForm;
+        if (isset ($_POST['ContactForm'])) {
+            $model->attributes = $_POST['ContactForm'];
+            if ($model->validate()) {
+                $mail = Yii::app()->Smtpmail;
+                $mail->SetFrom('2100954@my.ipleiria.pt', $model->name);
+                $mail->Subject = $model->subject;
+                $msg = $model->body . '<br />' . $model->email . '<br/>' . $model->name;
+                $mail->MsgHtml($msg);
+                $mail->CharSet = "UTF-8";
+                $mail->AddAddress('2100954@my.ipleiria.pt', "Fábio");
+                $mail->AddAddress($model->email, "Fábio");
+                if (!$mail->Send()) {
+                    Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
+
+                } else {
+                    Yii::app()->user->setFlash('sucess', 'Mail enviado');
+                }
+                $this->refresh();
+            }
+        }
+        $this->render('contact',array('model'=>$model));
+    }
 }

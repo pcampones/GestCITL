@@ -132,6 +132,7 @@ class SiteController extends Controller
                 }
                 $this->refresh();
             }
+
         }
         $this->render('contact',array('model'=>$model));
     }

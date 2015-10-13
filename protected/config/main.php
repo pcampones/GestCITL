@@ -37,6 +37,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'Smtpmail'=>array(
+			'class'
+		),
 
 		// uncomment the following to enable URLs in path-format
 		/*

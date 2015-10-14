@@ -1,5 +1,5 @@
 <?php
-class SiteContropller extends Controller
+class SiteController extends Controller
 {
 	/**
 	 * Declares class-based actions.
@@ -51,17 +51,14 @@ class SiteContropller extends Controller
 	{
 
         $model = new ContactForm;
-        $mail = new PHPMailer();
+      /*  $mail = new PHPMailer();
         $mail-> IsSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->Port=  587;
         $mail->SMTPAuth = true;
         $mail->Username = "citlleiria@gmail.com"; // Your Email Address
         $mail->Password = "citlleiriaa"; // Your Password
-        $mail->SMTPSecure = 'tls'; // Check Your Server's Connections for TLS or SSL
-     /*   $mail->From = "citlleiria@gmail.com";
-  /*      $mail->FromName = $name;*/
-   /*     $mail->Subject = $subject;*/
+        $mail->SMTPSecure = 'tls'; // Check Your Server's Connections for TLS or SSL*/
 		if (isset($_POST['ContactForm'])) {
 			$model->attributes = $_POST['ContactForm'];
 

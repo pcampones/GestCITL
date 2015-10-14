@@ -1,5 +1,4 @@
 <?php
-
 class SiteController extends Controller
 {
 	/**
@@ -9,14 +8,14 @@ class SiteController extends Controller
 	{
 		return array(
 			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+			'captcha' => array(
+				'class' => 'CCaptchaAction',
+				'backColor' => 0xFFFFFF,
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
+			'page' => array(
+				'class' => 'CViewAction',
 			),
 		);
 	}
@@ -37,9 +36,8 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
-		if($error=Yii::app()->errorHandler->error)
-		{
-			if(Yii::app()->request->isAjaxRequest)
+		if ($error = Yii::app()->errorHandler->error) {
+			if (Yii::app()->request->isAjaxRequest)
 				echo $error['message'];
 			else
 				$this->render('error', $error);
@@ -51,25 +49,41 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-Type: text/plain; charset=UTF-8";
+		$model = new ContactForm;
+		if (isset($_POST['ContactForm'])) {
+			$model->attributes = $_POST['ContactForm'];
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+            if ($model->validate())
+
+            {
+				$mail = Yii::app()->Smtpmail;
+				$mail->SetFrom('citlleiria@gmail.com', $model->name);
+				$mail->Subject = $model->subject;
+				$msg = $model->body . '<br />' . $model->email . '<br/>' . $model->name;
+				$mail->MsgHtml($msg);
+				$mail->CharSet = "UTF-8";
+				$mail->AddAddress('citlleiria@gmail.com', "Citl Leiria");
+				$mail->AddAddress($model->email, "Citl Leiria");
+				if (!$mail->Send()) {
+					Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
+					echo(var_dump($mail->ErrorInfo));
+					return $mail->ErrorInfo;
+				} else {
+					Yii::app()->user->setFlash('sucess', 'Mail enviado');
+					echo(var_dump($mail->ErrorInfo));
+					return $mail->ErrorInfo;
+
+
+				}
+				echo(var_dump($mail->ErrorInfo));
+				return $mail->ErrorInfo;
+
 				$this->refresh();
+
 			}
 		}
-		$this->render('contact',array('model'=>$model));
+
+		$this->render('contact', array('model' => $model));
 	}
 
 	/**
@@ -77,25 +91,23 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		$model=new LoginForm;
+		$model = new LoginForm;
 
 		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
+		if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 
 		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
+		if (isset($_POST['LoginForm'])) {
+			$model->attributes = $_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if ($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('login', array('model' => $model));
 	}
 
 	/**
@@ -106,34 +118,8 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
-
+}
     /**
      *
      */
-    public function actionContacto()
-    {
-        $model = new ContactForm;
-        if (isset ($_POST['ContactForm'])) {
-            $model->attributes = $_POST['ContactForm'];
-            if ($model->validate()) {
-                $mail = Yii::app()->Smtpmail;
-                $mail->SetFrom('2100954@my.ipleiria.pt', $model->name);
-                $mail->Subject = $model->subject;
-                $msg = $model->body . '<br />' . $model->email . '<br/>' . $model->name;
-                $mail->MsgHtml($msg);
-                $mail->CharSet = "UTF-8";
-                $mail->AddAddress('2100954@my.ipleiria.pt', "Fábio");
-                $mail->AddAddress($model->email, "Fábio");
-                if (!$mail->Send()) {
-                    Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
 
-                } else {
-                    Yii::app()->user->setFlash('sucess', 'Mail enviado');
-                }
-                $this->refresh();
-            }
-
-        }
-        $this->render('contact',array('model'=>$model));
-    }
-}

@@ -37,9 +37,6 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-		'Smtpmail'=>array(
-			'class'
-		),
 
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -88,11 +85,12 @@ return array(
 	'components'=>array(
 		'Smtpmail'=>array(
 			'class'=>'application.extensions.smtpmail.PHPMailer',
-			'Host'=>"mail.yourdomain.com",
-			'Username'=>'test@yourdomain.com',
-			'Password'=>'test',
+			'Host'=>"smtp.gmail.com",
+			'Username'=>'citlleiria@gmail.com',
+			'Password'=>'citlleiriaa',
+			'Smtpsecure'=>'SSL',
 			'Mailer'=>'smtp',
-			'Port'=>26,
+			'Port'=>465,
 			'SMTPAuth'=>true,
 		),
 	),

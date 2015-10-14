@@ -73,7 +73,9 @@ class SiteController extends Controller
 				$mail->CharSet = "UTF-8";
 				$mail->AddAddress('citlleiria@gmail.com', "Citl Leiria");
 				$mail->AddAddress($model->email, "Citl Leiria");
-				if (!$mail->Send()) {
+
+
+                if (!$mail->Send()) {
 					Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
 					echo(var_dump($mail->ErrorInfo));
 					return $mail->ErrorInfo;

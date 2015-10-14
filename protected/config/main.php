@@ -85,10 +85,9 @@ return array(
 	'components'=>array(
 		'Smtpmail'=>array(
 			'class'=>'application.extensions.smtpmail.PHPMailer',
-			'Host'=>"smtp.gmail.com",
+			'Host'=>"ssl://smtp.gmail.com",
 			'Username'=>'citlleiria@gmail.com',
 			'Password'=>'citlleiriaa',
-			'Smtpsecure'=>'tls',
 			'Mailer'=>'smtp',
 			'Port'=> 465,
 			'SMTPAuth'=>true,

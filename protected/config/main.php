@@ -82,16 +82,16 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
-	'components'=>array(
+	/*'components'=>array(
 		'Smtpmail'=>array(
 			'class'=>'application.extensions.smtpmail.PHPMailer',
 			'Host'=>"smtp.gmail.com",
 			'Username'=>'citlleiria@gmail.com',
 			'Password'=>'citlleiriaa',
-			'Smtpsecure'=>'SSL',
+			'Smtpsecure'=>'tls',
 			'Mailer'=>'smtp',
-			'Port'=>465,
+			'Port'=>587,
 			'SMTPAuth'=>true,
 		),
-	),
+	),*/
 );

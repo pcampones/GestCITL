@@ -97,6 +97,57 @@ class SiteController extends Controller
 		$this->render('contact', array('model' => $model));
 	}
 
+	public function actionPagamentos()
+	{
+		//TODO: ALTERAR ESTE CODIGO DE ACORDO COM OS PAGAMENTOS
+
+		$model = new PagamentosForm;
+		/*
+		$mail = new PHPMailer();
+		$mail->Mailer="smtp";
+		$mail->IsHTML(true);
+		$mail->SMTPSecure = "tls";
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port=  587;
+		$mail->SMTPAuth = true;
+		$mail-> IsSMTP();
+		$mail->Username = "citlleiria@gmail.com"; // Your Email Address
+		$mail->Password = "citlleiriaa"; // Your Password
+		if (isset($_POST['ContactForm'])) {
+			$model->attributes = $_POST['ContactForm'];
+
+			if ($model->validate())
+
+			{
+				//$mail = Yii::app()->Smtpmail;
+				$mail->SetFrom($model->email, $model->name);
+				$mail->FromName ="CITLLEIRIA";
+				$mail->Subject = $model->subject;
+				$msg = $model->body . '<br />' . $model->name;
+				$mail->MsgHtml($msg);
+				$mail->CharSet = "UTF-8";
+				//$mail->AddAddress('citlleiria@gmail.com', "Citl11 Leiria");
+				$mail->AddAddress($model->email, $model->name);
+
+
+				if (!$mail->Send()) {
+					Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
+
+				} else {
+					Yii::app()->user->setFlash('sucess', 'Mail enviado');
+					echo var_dump(@$mail);
+					return $mail->ErrorInfo;
+
+				}
+
+
+				$this->refresh();
+
+			}
+		}
+		*/
+		$this->render('contact', array('model' => $model));
+	}
 
 
 

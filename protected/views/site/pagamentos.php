@@ -11,5 +11,20 @@ $this->breadcrumbs=array(
 
 <h1>Pagamentos</h1>
 
+<?php if(Yii::app()->user->hasFlash('pagamentos')): ?>
+
+    <div class="flash-success">
+        <?php echo Yii::app()->user->getFlash('pagamentos'); ?>
+    </div>
+
+<?php else: ?>
+
+<p>
+    Pagamentos genericos e pagamentos em atraso.
+</p>
 
 
+
+
+
+<?php endif; ?>

@@ -82,7 +82,7 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
-	'components'=>array(
+/*	'components'=>array(
 		'Smtpmail'=>array(
 			'class'=>'application.extensions.smtpmail.PHPMailer',
 			'Host'=>"ssl://smtp.gmail.com",
@@ -92,5 +92,5 @@ return array(
 			'Port'=> 465,
 			'SMTPAuth'=>true,
 		),
-	),
+	),*/
 );

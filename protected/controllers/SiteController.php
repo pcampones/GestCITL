@@ -1,3 +1,4 @@
+<?php require '/../../protected/extensions/smtpmail/PHPMailer.php'?>
 <?php
 class SiteController extends Controller
 {
@@ -49,45 +50,44 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
-
         $model = new ContactForm;
-      /*  $mail = new PHPMailer();
-        $mail-> IsSMTP();
+        $mail = new PHPMailer();
+        $mail->Mailer="smtp";
+        $mail->IsHTML(true);
+        $mail->SMTPSecure = "tls";
         $mail->Host = "smtp.gmail.com";
         $mail->Port=  587;
         $mail->SMTPAuth = true;
+         $mail-> IsSMTP();
         $mail->Username = "citlleiria@gmail.com"; // Your Email Address
         $mail->Password = "citlleiriaa"; // Your Password
-        $mail->SMTPSecure = 'tls'; // Check Your Server's Connections for TLS or SSL*/
 		if (isset($_POST['ContactForm'])) {
 			$model->attributes = $_POST['ContactForm'];
 
             if ($model->validate())
 
             {
-				$mail = Yii::app()->Smtpmail;
-				$mail->SetFrom('citlleiria@gmail.com', $model->name);
+				/*$mail = Yii::app()->Smtpmail;*/
+				$mail->SetFrom($model->email, $model->name);
+                $mail->FromName ="CITLLEIRIA";
 				$mail->Subject = $model->subject;
-				$msg = $model->body . '<br />' . $model->email . '<br/>' . $model->name;
+				$msg = $model->body . '<br />' . $model->name;
 				$mail->MsgHtml($msg);
 				$mail->CharSet = "UTF-8";
-				$mail->AddAddress('citlleiria@gmail.com', "Citl Leiria");
-				$mail->AddAddress($model->email, "Citl Leiria");
+				//$mail->AddAddress('citlleiria@gmail.com', "Citl11 Leiria");
+				$mail->AddAddress($model->email, $model->name);
 
 
                 if (!$mail->Send()) {
 					Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
-					echo(var_dump($mail->ErrorInfo));
-					return $mail->ErrorInfo;
+
 				} else {
 					Yii::app()->user->setFlash('sucess', 'Mail enviado');
-					echo(var_dump($mail->ErrorInfo));
-					return $mail->ErrorInfo;
-
+                    echo var_dump(@$mail);
+                    return $mail->ErrorInfo;
 
 				}
-				echo(var_dump($mail->ErrorInfo));
-				return $mail->ErrorInfo;
+
 
 				$this->refresh();
 
@@ -96,6 +96,9 @@ class SiteController extends Controller
 
 		$this->render('contact', array('model' => $model));
 	}
+
+
+
 
 	/**
 	 * Displays the login page

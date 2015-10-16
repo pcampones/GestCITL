@@ -146,7 +146,7 @@ class SiteController extends Controller
 			}
 		}
 		*/
-		$this->render('contact', array('model' => $model));
+		$this->render('pagamentos', array('model' => $model));
 	}
 
 

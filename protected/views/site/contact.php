@@ -61,7 +61,7 @@ If you have business inquiries or other questions, please fill out the following
 		<?php echo $form->error($model,'body'); ?>
 	</div>
 
-		<?php
+	<?php
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		?>
 	<style>
@@ -74,13 +74,37 @@ If you have business inquiries or other questions, please fill out the following
 		</div>
 	<?php endif; ?>
 
+
 	<script type="text/javascript">
 		$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");
 	</script>
 
+
+
+
+	<?php
+	Yii::app()->clientScript->registerCoreScript('jquery');
+	?>
+	<style>
+		div.flash-insucess{text-align: center;margin-top: 10px;color: #FFF; margin-left: 5px;border: 1px solid #ccc;background-color: #FF0000; padding-left: 10px; -moz-border-radius: 5px;  -webkit-border-radius: 5px; -khtml-border-radius: 5px;border-radius: 5px;}
+	</style>
+
+	<?php if(Yii::app()->user->hasFlash('insucess')): ?>
+		<div class="flash-insucess">
+			<?php echo Yii::app()->user->getFlash('insucess'); ?>
+		</div>
+	<?php endif; ?>
+
+
+	<script type="text/javascript">
+		$(".flash-insucess").animate({opacity: 1.0}, 3000).fadeOut("slow");
+	</script>
+
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Submit'); ?>
 	</div>
+
 
 <?php $this->endWidget(); ?>
 

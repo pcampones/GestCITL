@@ -23,6 +23,26 @@ $this->breadcrumbs=array(
     Pagamentos genericos e pagamentos em atraso.
 </p>
 
+    <div class="form">
+
+        <?php $form=$this->beginWidget('CActiveForm', array(
+            'id'=>'contact-form',
+            'enableClientValidation'=>true,
+            'clientOptions'=>array(
+                'validateOnSubmit'=>true,
+            ),
+        )); ?>
+
+        <?php echo $form->errorSummary($model); ?>
+
+        <div class="row buttons">
+            <?php echo CHtml::submitButton('Pagamentos gerais'); ?>
+            <?php echo CHtml::submitButton('Pagamentos atrasados'); ?>
+        </div>
+
+        <?php $this->endWidget(); ?>
+
+    </div><!-- form -->
 
 
 

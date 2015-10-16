@@ -75,7 +75,7 @@ If you have business inquiries or other questions, please fill out the following
 	<?php endif; ?>
 
 	<script type="text/javascript">
-		$(document).ready(function(){$("flash-success").fadeOut(5000);});
+		$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");
 	</script>
 
 	<div class="row buttons">

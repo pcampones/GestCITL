@@ -79,9 +79,9 @@ class SiteController extends Controller
 
 
                 if (!$mail->Send()) {
-					Yii::app()->user->setFlash('insucess', 'Email não enviado!');
+					Yii::app()->user->setFlash('insuccess', 'Email não enviado!');
 				} else {
-					Yii::app()->user->setFlash('sucess','Email enviado com sucesso!');
+					Yii::app()->user->setFlash('success','Email enviado com sucesso!');
 
 				}
 

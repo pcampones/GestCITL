@@ -61,13 +61,30 @@ If you have business inquiries or other questions, please fill out the following
 		<?php echo $form->error($model,'body'); ?>
 	</div>
 
+		<?php
+		Yii::app()->clientScript->registerCoreScript('jquery');
+		?>
+	<style>
+		div.flash-success{text-align: center;margin-top: 10px;color: #FFF; margin-left: 5px;border: 1px solid #ccc;background-color: #44ae04; padding-left: 10px; -moz-border-radius: 5px;  -webkit-border-radius: 5px; -khtml-border-radius: 5px;border-radius: 5px;}
+	</style>
 
+	<?php if(Yii::app()->user->hasFlash('sucess')): ?>
+		<div class="flash-success">
+			<?php echo Yii::app()->user->getFlash('sucess'); ?>
+		</div>
+	<?php endif; ?>
+
+	<script type="text/javascript">
+		$(document).ready(function(){$("flash-success").fadeOut(5000);});
+	</script>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Submit'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
+
+
 
 </div><!-- form -->
 

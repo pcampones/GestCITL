@@ -59,8 +59,8 @@ class SiteController extends Controller
         $mail->Port=  587;
         $mail->SMTPAuth = true;
          $mail-> IsSMTP();
-        $mail->Username = "citlleiria@gmail.com"; // Your Email Address
-        $mail->Password = "citlleiriaa"; // Your Password
+        $mail->Username = "pedrocampones2@gmail.com"; // Your Email Address
+        $mail->Password = "pedro1908"; // Your Password
 		if (isset($_POST['ContactForm'])) {
 			$model->attributes = $_POST['ContactForm'];
 
@@ -79,12 +79,9 @@ class SiteController extends Controller
 
 
                 if (!$mail->Send()) {
-					Yii::app()->user->setFlash('error', 'Mail não enviado' . $mail->ErrorInfo);
-
+					Yii::app()->user->setFlash('error');
 				} else {
-					Yii::app()->user->setFlash('sucess', 'Mail enviado');
-                    echo var_dump(@$mail);
-                    return $mail->ErrorInfo;
+					Yii::app()->user->setFlash('sucess','Email Enviado com sucesso!');
 
 				}
 

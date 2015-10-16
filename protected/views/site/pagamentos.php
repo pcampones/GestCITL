@@ -33,8 +33,6 @@ $this->breadcrumbs=array(
             ),
         )); ?>
 
-        <p class="note">Fields with <span class="required">*</span> are required. BLA BLA</p>
-
         <?php echo $form->errorSummary($model); ?>
 
         <div class="row buttons">

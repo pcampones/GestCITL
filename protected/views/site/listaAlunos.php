@@ -36,7 +36,16 @@ $this->breadcrumbs=array(
         <?php echo $form->errorSummary($model); ?>
 
 
+
+        <?php echo CHtml::checkBox('ListaAlunosForm[attribute]', false,array());?>
+        <?php echo CHtml::label('Choveu', 'default');?>
+
+
+
+
         <?php $this->endWidget(); ?>
+
+
 
     </div><!-- form -->
 

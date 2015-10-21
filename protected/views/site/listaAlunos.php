@@ -1,32 +1,32 @@
 <?php
 /* @var $this SiteController */
-/* @var $model PagamentosForm */
+/* @var $model ListaAlunosForm */
 /* @var $form CActiveForm */
 
-$this->pageTitle=Yii::app()->name . ' - Pagamentos';
+$this->pageTitle=Yii::app()->name . ' - ListaAlunos';
 $this->breadcrumbs=array(
-    'Pagamentos',
+    'ListaAlunos',
 );
 ?>
 
-<h1>Pagamentos</h1>
+    <h1>Lista de Alunos</h1>
 
-<?php if(Yii::app()->user->hasFlash('pagamentos')): ?>
+<?php if(Yii::app()->user->hasFlash('listaAlunos')): ?>
 
     <div class="flash-success">
-        <?php echo Yii::app()->user->getFlash('pagamentos'); ?>
+        <?php echo Yii::app()->user->getFlash('listaAlunos'); ?>
     </div>
 
 <?php else: ?>
 
-<p>
-    Pagamentos genericos e pagamentos em atraso.
-</p>
+    <p>
+        Lista de alunos de uma determinada turma.
+    </p>
 
     <div class="form">
 
         <?php $form=$this->beginWidget('CActiveForm', array(
-            'id'=>'pagamentos-form',
+            'id'=>'listaAlunos-form',
             'enableClientValidation'=>true,
             'clientOptions'=>array(
                 'validateOnSubmit'=>true,
@@ -35,10 +35,6 @@ $this->breadcrumbs=array(
 
         <?php echo $form->errorSummary($model); ?>
 
-        <div class="row buttons">
-            <?php echo CHtml::submitButton('Pagamentos gerais'); ?>
-            <?php echo CHtml::submitButton('Pagamentos atrasados'); ?>
-        </div>
 
         <?php $this->endWidget(); ?>
 
